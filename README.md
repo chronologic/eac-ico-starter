@@ -1,6 +1,6 @@
 # Schedule transcation JS API
 
-JS library to allows you to easily schedule Ethereum transcations to happen in the future using Ethereum Alarm Clock.
+JS library to allows you to easily schedule Ethereum transactions to happen in the future using Ethereum Alarm Clock.
 
 <img src="https://i.imgur.com/BHgjSuW.png" />
 

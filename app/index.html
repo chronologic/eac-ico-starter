@@ -29,7 +29,7 @@
             Smart contract address (TOKEN):
         </div>
         <div class="col">
-            <input id="contract-address" class="form-control" value="0x1332283369b529aaae2ba378189814b3fe3d6f6b">      
+            <input id="contract-address" class="form-control" value="0x1332283369b529aaae2ba378189814b3fe3d6f6b">
         </div>
       </div>
 
@@ -41,20 +41,20 @@
             Window start (UNIX Timestamp):
         </div>
         <div class="col">
-            <input id="timestamp" class="form-control" value="1518530927">      
+            <input id="timestamp" class="form-control" value="1518530927">
         </div>
       </div>
 
       <br><br>
-      
+
       <button id="send-btn" class="btn btn-primary" disabled>Send contribution</button>
       <br><br>
-      <div id="success-info" class="alert alert-success" style="display: none">Your transaction has been successfully processed.<br><br>This is transcation hash:<br><span id="txhash"></span></div>      
+      <div id="success-info" class="alert alert-success" style="display: none">Your transaction has been successfully processed.<br><br>This is transaction hash:<br><span id="txhash"></span></div>      
       <div id="enabled-info" class="alert alert-info" style="display: none">This is info displayed when MetaMask is present.</div>
       <div id="disabled-info" class="alert alert-danger" style="display: none">MetaMask not found. This message will be displayed.</div>
       <div id="locked-info" class="alert alert-warning" style="display: none">Please unlock your account in MetaMask.</div>
     </div>
-    
+
     <script src="/js/eac-schedule.js"></script>
     <script>
       window.ScheduleSetup().then(function() {
@@ -99,6 +99,6 @@
           Schedule.windowStart = $(this).val();
         });
       });
-    </script> 
+    </script>
   </body>
 </html>
