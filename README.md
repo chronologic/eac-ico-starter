@@ -1,4 +1,4 @@
-# Schedule transcation JS API
+# Ethereum Alarm Clock ICO Starter
 
 JS library to allows you to easily schedule Ethereum transactions to happen in the future using Ethereum Alarm Clock.
 
