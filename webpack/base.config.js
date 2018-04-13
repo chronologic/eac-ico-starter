@@ -52,6 +52,6 @@ module.exports = {
 
   plugins: [
     // Directly copies certain files
-    new CopyWebpackPlugin([{ from: './app/index.html', to: 'index.html' }])
+    new CopyWebpackPlugin([{ from: './demo/index.html', to: 'index.html' }])
   ]
 };
