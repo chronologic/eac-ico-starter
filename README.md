@@ -8,7 +8,7 @@ You can create a scheduling functionality that, for the end user, will be just o
 
 The primary use case is ICO contribution scheduling.
 
-<img src="https://media.giphy.com/media/AiiTHPqF8CNMEiHZIl/giphy.gif" />
+<img src="https://preview.ibb.co/cQKeRn/output3.gif" />
 
 # Usage in project
 
