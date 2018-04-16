@@ -7,8 +7,6 @@
     "build": "webpack --config webpack/prod.config.js",
     "dev": "node_modules/.bin/webpack-dev-server --config webpack/dev.config.js --host 0.0.0.0 --disable-host-check --hot",
     "lint-fix": "eslint --fix .",
-    "clean": "./tools/clean.sh",
-    "validate": "npm ls",
     "lint": "eslint .",
     "precommit": "lint-staged",
     "formatAll": "find ./app/ ./__tests__/ -name '*.js*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override"
