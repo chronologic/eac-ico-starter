@@ -8,6 +8,8 @@ You can create a scheduling functionality that, for the end user, will be just o
 
 The primary use case is ICO contribution scheduling.
 
+[Live demo.](https://chronologic.github.io/eac-ico-starter/)
+
 <img src="https://image.ibb.co/g1NcCS/output3.gif" />
 
 # Usage in project
