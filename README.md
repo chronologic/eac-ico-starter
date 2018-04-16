@@ -31,7 +31,7 @@ function getOptions() {
         windowStart: '1518530927', // UNIX TIMESTAMP
         windowSize: 86400, // in seconds
         callGasAmount: 200000,
-        callMethodSignature: '0x11a4c710', // method signature hash beginning, you can get it from demo generator
+        callMethodSignature: 'buyRecipient(address)', // signature of a method you wish to call
         callMethodArguments: ['0xe87529a6123a74320e13a6dabf3606630683c029'], // parameter values, in this example user wallet address
         fee: FEE, // fee for scheduling paid for using EAC
         sendButtonSelector: '#send-btn',
