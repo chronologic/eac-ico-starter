@@ -1,5 +1,6 @@
 import { Utils } from './utils';
 import { stores } from '../stores/index';
+import abi from 'ethereumjs-abi';
 
 const { transactionStore } = stores;
 
@@ -19,8 +20,7 @@ export class Schedule {
   callGasPrice;
   callGasAmount;
   callMethodSignature;
-  callMethodParameterTypes;
-  callMethodParameterValues;
+  callMethodArguments;
 
   successHandler;
 
@@ -39,8 +39,7 @@ export class Schedule {
     callGasPrice,
     callGasAmount = 0,
     callMethodSignature,
-    callMethodParameterTypes,
-    callMethodParameterValues,
+    callMethodArguments,
     successHandler = () => {}
   }) {
     this.enabledInfoSelector = enabledInfoSelector;
@@ -66,8 +65,7 @@ export class Schedule {
     this.callGasPrice = callGasPrice || Utils.castGweiToWei(50);
     this.callGasAmount = callGasAmount;
     this.callMethodSignature = callMethodSignature;
-    this.callMethodParameterTypes = callMethodParameterTypes;
-    this.callMethodParameterValues = callMethodParameterValues;
+    this.callMethodArguments = callMethodArguments;
 
     this.successHandler = successHandler;
 
@@ -88,15 +86,7 @@ export class Schedule {
       return null;
     }
 
-    return this.callMethodSignature + this.ABIEncodedParams;
-  }
-
-  get ABIEncodedParams() {
-    if (!this.callMethodParameterTypes) {
-      return '';
-    }
-
-    return Utils.getABIEncodedParams(this.callMethodParameterTypes, this.callMethodParameterValues);
+    return '0x' + abi.simpleEncode(this.callMethodSignature, ...this.callMethodArguments).toString('hex');
   }
 
   _showElement(element) {

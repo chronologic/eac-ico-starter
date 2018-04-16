@@ -84,7 +84,7 @@
             Window start (UNIX Timestamp):
           </div>
           <div class="col">
-            <input id="timestamp" class="form-control" value="1518530927">
+            <input id="timestamp" class="form-control" value="1918530927">
           </div>
         </div>
 
@@ -141,8 +141,7 @@
   callValue: ${options.callValue},
   callGasAmount: ${options.callGasAmount},
   callMethodSignature: '${options.callMethodSignature}',
-  callMethodParameterTypes: ['address'],
-  callMethodParameterValues: ['${options.callMethodParameterValues}'],
+  callMethodArguments: ['${options.callMethodArguments}'],
   fee: ${options.fee}, // WEI
   sendButtonSelector: '${options.sendButtonSelector}',
   enabledInfoSelector: '${options.enabledInfoSelector}',
@@ -152,10 +151,6 @@
 });`;
       }
 
-      function getMethodSignatureHashBeginning(methodSignatureString) {
-        return window.web3.sha3(methodSignatureString).substr(0, 10);
-      }
-
       function ethToWei(ethValue) {
         if (!window.isNaN(ethValue) && ethValue) {
           return ethValue * 10 ** 18;
@@ -163,7 +158,7 @@
       }
 
       function getOptions() {
-        var FEE = '2242000000000000'; // IN WEI, ABOUT $2
+        var FEE = '2242000000000000';
 
   function successHandler(result) {
     var transactionHash = result.transactionHash;
@@ -178,9 +173,8 @@
           windowStart: $(TIMESTAMP_SELECTOR).val(),
           windowSize: $(WINDOW_SIZE_SELECTOR).val(),
           callGasAmount: $(CALL_GAS_SELECTOR).val(),
-          callMethodSignature: getMethodSignatureHashBeginning($(METHOD_SIGNATURE_SELECTOR).val()),
-          callMethodParameterTypes: ['address'],
-          callMethodParameterValues: [$(CONTRIBUTOR_ADDRESS_SELECTOR).val()],
+          callMethodSignature: $(METHOD_SIGNATURE_SELECTOR).val(),
+          callMethodArguments: [$(CONTRIBUTOR_ADDRESS_SELECTOR).val()],
           fee: FEE,
           sendButtonSelector: '#send-btn',
           enabledInfoSelector: '#enabled-info',
@@ -220,13 +214,13 @@
         });
 
         $(CONTRIBUTOR_ADDRESS_SELECTOR).keyup(function (event) {
-          Schedule.callMethodParameterValues = [$(this).val()];
+          Schedule.callMethodArguments = [$(this).val()];
 
           updateCodeExample();
         });
 
         $(METHOD_SIGNATURE_SELECTOR).keyup(function (event) {
-          Schedule.callMethodSignature = getMethodSignatureHashBeginning($(this).val());
+          Schedule.callMethodSignature = $(this).val();
 
           updateCodeExample();
         });
@@ -244,6 +238,8 @@
         });
 
         $(CONTRIBUTOR_ADDRESS_SELECTOR).val(window.web3 && window.web3.eth.accounts[0]);
+
+        Schedule.callMethodArguments = [$(CONTRIBUTOR_ADDRESS_SELECTOR).val()];
 
         updateCodeExample();
       });

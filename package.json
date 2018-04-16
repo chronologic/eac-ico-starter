@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
-    "babel-eslint": "^8.2.2",
+    "babel-eslint": "^8.2.3",
     "babel-jest": "^22.4.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -38,25 +38,21 @@
     "jest": "^22.4.3",
     "lint-staged": "^7.0.4",
     "node-sass": "^4.8.3",
-    "prettier": "^1.11.1",
+    "prettier": "^1.12.0",
     "regenerator-runtime": "^0.11.1",
     "resolve-url-loader": "^2.3.0",
-    "sass-loader": "^6.0.7",
-    "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
     "webpack-dev-server": "^3.1.3",
-    "webpack-merge": "^4.1.2"
+    "webpack-merge": "^4.1.2",
+    "chai": "^4.1.2"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "bignumber.js": "^6.0.0",
-    "bluebird": "^3.5.1",
-    "chai": "^4.1.2",
     "eac.js-lib": "^1.2.0",
-    "ethereumjs-abi": "^0.6.5",
-    "moment": "^2.22.0",
+    "ethereumjs-abi": "git://github.com/ethereumjs/ethereumjs-abi#4ea2fdfed09e8f99117d9362d17c6b01b64a2bcf",
     "web3": "^0.20.6"
   }
 }

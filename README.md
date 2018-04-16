@@ -32,8 +32,7 @@ function getOptions() {
         windowSize: 86400, // in seconds
         callGasAmount: 200000,
         callMethodSignature: '0x11a4c710', // method signature hash beginning, you can get it from demo generator
-        callMethodParameterTypes: ['address'],
-        callMethodParameterValues: ['0xe87529a6123a74320e13a6dabf3606630683c029'], // parameter values, in this example user wallet address
+        callMethodArguments: ['0xe87529a6123a74320e13a6dabf3606630683c029'], // parameter values, in this example user wallet address
         fee: FEE, // fee for scheduling paid for using EAC
         sendButtonSelector: '#send-btn',
         enabledInfoSelector: '#enabled-info', // show when MetaMask is enabled

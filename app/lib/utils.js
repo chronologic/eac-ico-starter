@@ -1,4 +1,3 @@
-import abi from 'ethereumjs-abi';
 import BigNumber from 'bignumber.js';
 
 import Web3 from 'web3';
@@ -35,18 +34,6 @@ export class Utils {
 
   static isWalletLocked() {
     return !web3.eth.accounts[0];
-  }
-
-  static getABIEncodedParams(parameterTypes, parameterValues) {
-    if (!parameterTypes) {
-      throw 'Parameters types are needed for encoding ABI params.';
-    }
-
-    if (!parameterValues) {
-      throw 'Parameters values are needed for encoding ABI params.';
-    }
-
-    return abi.rawEncode(parameterTypes, parameterValues).toString('hex');
   }
 
   static getRecommendedGasPrice() {

@@ -1,5 +1,4 @@
 import Web3 from 'web3/index';
-import Bb from 'bluebird';
 import { Networks } from '../config/web3Config.js';
 
 let instance = null;
@@ -21,9 +20,9 @@ export default class Web3Service {
       await this.connect();
       this.initialized = true;
       return true;
-    } else {
-      return false;
     }
+
+    return false;
   }
 
   async connect() {
@@ -39,17 +38,18 @@ export default class Web3Service {
 
     this.web3 = web3;
 
-    if (!this.connectedToMetaMask || !this.web3.isConnected())
-      //Do not proceed if not connected to metamask
+    if (!this.connectedToMetaMask || !this.web3.isConnected()) {
+      // Do not proceed if not connected to metamask
       return;
+    }
 
     this.accounts = web3.eth.accounts;
 
     web3.eth.defaultAccount = this.accounts[0];
 
-    const netId = await Bb.fromCallback(callback => web3.version.getNetwork(callback));
-
-    this.netId = netId;
+    web3.version.getNetwork((error, netId) => {
+      this.netId = netId;
+    });
   }
 
   async awaitInitialized() {
