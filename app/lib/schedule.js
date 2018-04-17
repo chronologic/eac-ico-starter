@@ -86,7 +86,9 @@ export class Schedule {
       return null;
     }
 
-    return '0x' + abi.simpleEncode(this.callMethodSignature, ...this.callMethodArguments).toString('hex');
+    return (
+      '0x' + abi.simpleEncode(this.callMethodSignature, ...this.callMethodArguments).toString('hex')
+    );
   }
 
   _showElement(element) {
@@ -94,7 +96,7 @@ export class Schedule {
       return;
     }
 
-    element.style.opacity = 1;
+    element.style.display = 'block';
   }
 
   _hideElement(element) {
@@ -102,7 +104,7 @@ export class Schedule {
       return;
     }
 
-    element.style.opacity = 0;
+    element.style.display = 'none';
   }
 
   _disableElement(element) {
