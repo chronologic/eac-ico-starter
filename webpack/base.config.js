@@ -52,6 +52,9 @@ module.exports = {
 
   plugins: [
     // Directly copies certain files
-    new CopyWebpackPlugin([{ from: './demo/index.html', to: 'index.html' }])
+    new CopyWebpackPlugin([
+      { from: './demo/index.html', to: 'index.html' },
+      { from: './demo/assets/chronologic-logo.svg', to: './assets/chronologic-logo.svg' }
+    ])
   ]
 };
