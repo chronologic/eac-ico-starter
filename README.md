@@ -1,6 +1,8 @@
-# Ethereum Alarm Clock ICO Starter
+[<img src="https://s3.amazonaws.com/chronologic.network/ChronoLogic_logo.svg" width="128px">](https://github.com/chronologic)
 
 [![Build Status](https://travis-ci.org/chronologic/eac-ico-starter.svg?branch=master)](https://travis-ci.org/chronologic/eac-ico-starter)
+
+# Ethereum Alarm Clock ICO Starter
 
 This JavaScript library allows you to easily schedule Ethereum transactions to happen in the future using Ethereum Alarm Clock.
 
