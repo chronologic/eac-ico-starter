@@ -1,6 +1,7 @@
 import { Utils } from './utils';
 import { stores } from '../stores/index';
 import abi from 'ethereumjs-abi';
+import { MAINNET_NETWORK_ID } from '../config/web3Config';
 
 const { transactionStore } = stores;
 
@@ -8,6 +9,7 @@ export class Schedule {
   enabledInfoSelector;
   disabledInfoSelector;
   sendButtonSelector;
+  wrongNetworkInfoSelector;
 
   windowStart;
   windowSize;
@@ -23,12 +25,9 @@ export class Schedule {
   callMethodArguments;
 
   successHandler;
+  networkId;
 
   constructor({
-    enabledInfoSelector,
-    disabledInfoSelector,
-    lockedInfoSelector,
-    sendButtonSelector,
     windowStart,
     windowSize,
     toAddress,
@@ -40,12 +39,21 @@ export class Schedule {
     callGasAmount = 0,
     callMethodSignature,
     callMethodArguments,
-    successHandler = () => {}
+    successHandler = () => {},
+    networkId = MAINNET_NETWORK_ID,
+    enabledInfoSelector,
+    disabledInfoSelector,
+    lockedInfoSelector,
+    sendButtonSelector,
+    wrongNetworkInfoSelector
   }) {
     this.enabledInfoSelector = enabledInfoSelector;
     this.disabledInfoSelector = disabledInfoSelector;
     this.sendButtonSelector = sendButtonSelector;
     this.lockedInfoSelector = lockedInfoSelector;
+    this.wrongNetworkInfoSelector = wrongNetworkInfoSelector;
+
+    this.networkId = networkId;
 
     this.computeUIState();
 
@@ -123,6 +131,10 @@ export class Schedule {
     element.disabled = false;
   }
 
+  get wrongNetworkSelected() {
+    return transactionStore.initializationError || transactionStore._web3.netId !== this.networkId;
+  }
+
   computeUIState() {
     if (typeof window === 'undefined') {
       return;
@@ -132,27 +144,39 @@ export class Schedule {
     const disabledInfo = document.querySelector(this.disabledInfoSelector);
     const enabledInfo = document.querySelector(this.enabledInfoSelector);
     const lockedInfo = document.querySelector(this.lockedInfoSelector);
+    const wrongNetworkInfo = document.querySelector(this.wrongNetworkInfoSelector);
 
-    let checkAgain = true;
+    let checkAgain = false;
 
-    if (this.web3Enabled) {
-      if (Utils.isWalletLocked()) {
+    if (transactionStore.initializationEnded) {
+      if (this.wrongNetworkSelected) {
+        this._showElement(wrongNetworkInfo);
         this._disableElement(sendButton);
-        this._showElement(lockedInfo);
         this._hideElement(enabledInfo);
-      } else {
-        this._enableElement(sendButton);
         this._hideElement(lockedInfo);
-        this._showElement(enabledInfo);
+
+        checkAgain = true;
+      } else if (this.web3Enabled) {
+        if (Utils.isWalletLocked()) {
+          this._disableElement(sendButton);
+          this._showElement(lockedInfo);
+          this._hideElement(enabledInfo);
+        } else {
+          this._enableElement(sendButton);
+          this._hideElement(lockedInfo);
+          this._showElement(enabledInfo);
+        }
+
+        this._hideElement(disabledInfo);
+
+        checkAgain = true;
+      } else {
+        this._disableElement(sendButton);
+        this._hideElement(lockedInfo);
+        this._showElement(disabledInfo);
       }
-
-      this._hideElement(disabledInfo);
     } else {
-      this._disableElement(sendButton);
-      this._hideElement(lockedInfo);
-      this._showElement(disabledInfo);
-
-      checkAgain = false;
+      checkAgain = true;
     }
 
     if (checkAgain) {
