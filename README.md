@@ -17,7 +17,7 @@ The primary use case is ICO contribution scheduling.
 ## Usage in project
 
 1. Embed `dist/js/eac-schedule.js` into your page.
-2. Prepare parameters for scheduling:
+2. Prepare the parameters for scheduling:
 ```
 function getOptions() {
     var FEE = '2242000000000000'; // IN WEI
@@ -46,7 +46,7 @@ function getOptions() {
     };
 }
 ```
-3. Include following code for the integration:
+3. Include the following code for the integration:
 ```
 window.ScheduleSetup().then(function() {
     var Schedule = new window.Schedule(getOptions());
@@ -57,29 +57,29 @@ window.ScheduleSetup().then(function() {
 
 ### Options
 
-- `callValue` : `string` - Future transaction value in Wei. Say contribution amount of user is 1ETH, you should pass `'1000000000000000000'`, which is `10**18`.
+- `callValue` : `string` - Future transaction value in Wei. Say contribution amount of the user is 1 ETH. In that case, you should pass `'1000000000000000000'`, which is `10**18`.
 
-- `toAddress` : `string` - Address to send future transaction to. In terms of ICO it should be smart contract address which has method to buy tokens.
+- `toAddress` : `string` - Address to send the future transaction to. In terms of ICOs, it should be a smart contract address which has a method to buy tokens.
 
-- `windowStart` : `number` - UNIX timestamp when window for execution will be open. It should be usually time after ICO start, so when contribution will be sent, it will be accepted by smart contract.
+- `windowStart` : `number` - UNIX timestamp when the window for execution will be open. It should usually be the time after the start of the ICO, so that when the contribution is sent, it will be accepted by the smart contract.
 
 - `windowSize` : `number` - Size of the execution window in seconds for the transaction.
 
-- `callMethodSignature` : `string` - Signature of contract method you wish to call. This method should exist on smart contract with `toAddress` address.
+- `callMethodSignature` : `string` - Signature of the contract method you wish to call. This method should exist in the smart contract with the `toAddress` address.
 
 - `callMethodArguments` : `array` - Array of arguments to pass to a smart contract method call.
 
 - `fee` : `string` - Fee (in Wei) paid to Ethereum Alarm Clock maintainers for using scheduling.
 
-- `sendButtonSelector` : `string` - CSS selector for button, that, when clicked will try to send MetaMask transaction that will schedule contribution.
+- `sendButtonSelector` : `string` - CSS selector for the button that, when clicked, will try to send a MetaMask transaction that will schedule the contribution.
 
-- `enabledInfoSelector` : `string` - CSS selector for container that will be shown when MetaMask is enabled.
+- `enabledInfoSelector` : `string` - CSS selector for the container that will be shown when MetaMask is enabled.
 
-- `disabledInfoSelector` : `string` - CSS selector for container that will be shown when MetaMask is disabled.
+- `disabledInfoSelector` : `string` - CSS selector for the container that will be shown when MetaMask is disabled.
 
-- `lockedInfoSelector` : `string` - CSS selector for container that will be shown when MetaMask is locked.
+- `lockedInfoSelector` : `string` - CSS selector for the container that will be shown when MetaMask is locked.
 
-- `successHandler` : `function(result)` - Function that will be called when transaction has been sent. First argument is object which contains `transactionHash`.
+- `successHandler` : `function(result)` - Function that will be called when a transaction has been sent. First argument is an object that contains the `transactionHash`.
 
 ## Development guide
 
