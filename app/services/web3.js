@@ -48,7 +48,7 @@ export default class Web3Service {
     web3.eth.defaultAccount = this.accounts[0];
 
     web3.version.getNetwork((error, netId) => {
-      this.netId = netId;
+      this.netId = parseInt(netId, 10);
     });
   }
 
@@ -65,42 +65,11 @@ export default class Web3Service {
   }
 
   get network() {
-    if (typeof Networks[this.netId] === 'undefined') return Networks[0];
-    else return Networks[this.netId];
-  }
-
-  humanizeCurrencyDisplay(priceInWei) {
-    const ETHER_UNITS_VALUES_MAPPING = {
-      WEI: 1,
-      MWEI: 1000000,
-      FINNEY: 1000000000000000,
-      ETH: 1000000000000000000
-    };
-
-    let unit = 'ETH';
-
-    if (!priceInWei) {
-      return null;
+    if (typeof Networks[this.netId] === 'undefined') {
+      return Networks[0];
     }
 
-    const priceAsNumber = priceInWei.toNumber();
-
-    let display = priceAsNumber;
-
-    if (priceAsNumber < ETHER_UNITS_VALUES_MAPPING.MWEI) {
-      unit = 'WEI';
-    } else if (priceAsNumber < ETHER_UNITS_VALUES_MAPPING.FINNEY) {
-      display = priceInWei.div(ETHER_UNITS_VALUES_MAPPING.MWEI).toFixed();
-      unit = 'MWEI';
-    } else if (priceAsNumber < ETHER_UNITS_VALUES_MAPPING.ETH) {
-      display = priceInWei.div(ETHER_UNITS_VALUES_MAPPING.FINNEY).toFixed();
-      unit = 'FINNEY';
-    } else {
-      display = priceInWei.div(ETHER_UNITS_VALUES_MAPPING.ETH).toFixed();
-      unit = 'ETH';
-    }
-
-    return `${display} ${unit}`;
+    return Networks[this.netId];
   }
 }
 

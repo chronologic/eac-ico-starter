@@ -121,12 +121,12 @@
               <br>
               <span id="txhash"></span>
             </div>
-            <div id="enabled-info" class="alert alert-info" style="display: none">This is info displayed when MetaMask is present.</div>
+            <div id="enabled-info" class="alert alert-info" style="display: none">This is info displayed when MetaMask is present and user is using correct network.</div>
             <div id="disabled-info" class="alert alert-danger" style="display: none">MetaMask not found. This message will be displayed.</div>
             <div id="locked-info" class="alert alert-warning" style="display: none">Please unlock your account in MetaMask.</div>
+            <div id="wrong-network-info" class="alert alert-warning" style="display: none">You're using incorrect Ethereum network. Please switch to <b>Kovan</b>.</div>
           </div>
         </div>
-
 
       </div>
       <div class="col-lg-6">
@@ -165,7 +165,9 @@
   enabledInfoSelector: '${options.enabledInfoSelector}',
   disabledInfoSelector: '${options.disabledInfoSelector}',
   lockedInfoSelector: '${options.lockedInfoSelector}',
-  successHandler: ${options.successHandler.toString()}
+  wrongNetworkInfoSelector: '${options.wrongNetworkInfoSelector}',
+  successHandler: ${options.successHandler.toString()},
+  networkId: ${options.networkId}
 });`;
       }
 
@@ -198,6 +200,8 @@
           enabledInfoSelector: '#enabled-info',
           disabledInfoSelector: '#disabled-info',
           lockedInfoSelector: '#locked-info',
+          wrongNetworkInfoSelector: '#wrong-network-info',
+          networkId: 42,
           successHandler
         };
       }

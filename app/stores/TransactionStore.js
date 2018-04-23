@@ -1,9 +1,11 @@
 import BigNumber from 'bignumber.js';
 
 export class TransactionStore {
-  _eac = null;
-  _web3 = null;
-  _eacScheduler = null;
+  _eac;
+  _web3;
+  _eacScheduler;
+  initializationEnded = false;
+  initializationError = false;
 
   constructor(eac, web3) {
     this._web3 = web3;
@@ -16,10 +18,14 @@ export class TransactionStore {
     try {
       this._eacScheduler = await this._eac.scheduler();
     } catch (error) {
+      this.initializationError = true;
+      this.initializationEnded = true;
       throw error;
     }
 
     await this._web3.connect();
+
+    this.initializationEnded = true;
   }
 
   async schedule(
