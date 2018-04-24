@@ -1,6 +1,6 @@
 [<img src="https://s3.amazonaws.com/chronologic.network/ChronoLogic_logo.svg" width="128px">](https://github.com/chronologic)
 
-_Note: Operational on the Kovan and Ropsten testnets. Mainnet release coming soon._ 
+_Note: Operational on the Kovan and Ropsten testnets. Mainnet release coming soon._
 
 [![Build Status](https://travis-ci.org/chronologic/eac-ico-starter.svg?branch=master)](https://travis-ci.org/chronologic/eac-ico-starter)
 
@@ -44,7 +44,9 @@ function getOptions() {
         enabledInfoSelector: '#enabled-info', // show when MetaMask is enabled
         disabledInfoSelector: '#disabled-info', // show when there is no MetaMask
         lockedInfoSelector: '#locked-info', // show when MetaMask is locked
-        successHandler // callback when transaction has been scheduled
+        wrongNetworkInfoSelector: '#wrong-network-info', // show when MetaMask network is different than networkId
+        successHandler // callback when transaction has been scheduled,
+        networkId: 42 // id of the Ethereum network for the scheduling functionality
     };
 }
 ```
@@ -81,7 +83,11 @@ window.ScheduleSetup().then(function() {
 
 - `lockedInfoSelector` : `string` - CSS selector for the container that will be shown when MetaMask is locked.
 
+- `wrongNetworkInfoSelector` : `string` - CSS selector for the container that will be shown when MetaMask network is different than `networkId`.
+
 - `successHandler` : `function(result)` - Function that will be called when a transaction has been sent. First argument is an object that contains the `transactionHash`.
+
+- `networkId` : `number` - ID of the Ethereum network scheduling should work on. By default it is `1` - which is main net, `42` is Kovan.
 
 ## Development guide
 
