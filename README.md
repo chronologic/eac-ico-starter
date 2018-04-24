@@ -2,6 +2,7 @@
 
 _Note: Operational on the Kovan and Ropsten testnets. Mainnet release coming soon._
 
+[![npm version](https://badge.fury.io/js/eac-ico-starter.svg)](https://badge.fury.io/js/eac-ico-starter)
 [![Build Status](https://travis-ci.org/chronologic/eac-ico-starter.svg?branch=master)](https://travis-ci.org/chronologic/eac-ico-starter)
 
 # Ethereum Alarm Clock ICO Starter
